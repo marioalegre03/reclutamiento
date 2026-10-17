@@ -1,6 +1,6 @@
 create table if not exists public.recruitment_applications (
  id uuid primary key, created_at timestamptz not null default now(), nombre text not null, email text not null,
- telefono text not null default '', puesto text not null, ciudad text not null default '', experiencia text not null default '', mensaje text not null default '',
+ telefono text not null default '', puesto text not null, emisora text not null default '', ciudad text not null default '', experiencia text not null default '', mensaje text not null default '',
  consent_at timestamptz not null default now(), ip_hash text not null, email_status text not null default 'pending', email_message_id text
 );
 alter table public.recruitment_applications enable row level security;
@@ -16,8 +16,8 @@ begin
    return 'duplicate';
  end if;
  if (select count(*) from recruitment_applications where ip_hash=p_ip and created_at>now()-interval '1 hour')>=3 or (select count(*) from recruitment_applications where created_at>now()-interval '1 day')>=150 then return 'limited'; end if;
- insert into recruitment_applications(id,ip_hash,nombre,email,telefono,puesto,ciudad,experiencia,mensaje)
- values(p_id,p_ip,p_data->>'nombre',p_data->>'email',p_data->>'telefono',p_data->>'puesto',p_data->>'ciudad',p_data->>'experiencia',p_data->>'mensaje');
+ insert into recruitment_applications(id,ip_hash,nombre,email,telefono,puesto,emisora,ciudad,experiencia,mensaje)
+ values(p_id,p_ip,p_data->>'nombre',p_data->>'email',p_data->>'telefono',p_data->>'puesto',p_data->>'emisora',p_data->>'ciudad',p_data->>'experiencia',p_data->>'mensaje');
  return 'reserved';
 end; $$;
 revoke all on function public.reserve_recruitment(uuid,text,jsonb) from public,anon,authenticated;
