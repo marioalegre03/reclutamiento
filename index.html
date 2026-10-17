@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-jI6yjTACZJgaoz8ntmTG6LVkGkmLtJ2e528fspeLno4='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; connect-src https://saqyplbhhojyzusarkzq.supabase.co; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ab7CsVV2sL3i0NH9MnuDgfI0C7ulpKW1Viz28LcjY6I='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; connect-src https://saqyplbhhojyzusarkzq.supabase.co; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Únete al equipo | Estación Kusmedios</title>
@@ -112,6 +112,17 @@ footer a:hover{text-decoration:underline}
           <input id="telefono" name="telefono" type="tel" maxlength="20" autocomplete="tel">
         </div>
       </div>
+      <div class="field">
+        <label for="emisora">¿Para qué emisora te gustaría participar? *</label>
+        <select id="emisora" name="emisora" required>
+          <option value="">Elige una emisora…</option>
+          <option>Estacionkusfm</option>
+          <option>KusFM Joven</option>
+          <option>Runa FM</option>
+          <option>Radio Aventura MX</option>
+          <option>RunaRadio Irapuato</option>
+        </select>
+      </div>
       <div class="row">
         <div class="field">
           <label for="puesto">¿En qué te gustaría participar? *</label>
@@ -183,12 +194,13 @@ footer a:hover{text-decoration:underline}
       email: f.email.value.trim(),
       telefono: f.telefono.value.trim(),
       puesto: f.puesto.value,
+      emisora: f.emisora.value,
       ciudad: f.ciudad.value.trim(),
       experiencia: f.experiencia.value.trim(),
       mensaje: f.mensaje.value.trim()
     };
 
-    if (!data.nombre || !data.email || !data.puesto) { fail('Completa nombre, correo y el área en la que quieres participar.'); return; }
+    if (!data.nombre || !data.email || !data.emisora || !data.puesto) { fail('Completa nombre, correo, emisora y el área en la que quieres participar.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { fail('Revisa tu correo electrónico, parece incompleto.'); return; }
     if (!document.getElementById('aviso').checked) { fail('Necesitamos tu permiso para usar tus datos y contactarte.'); return; }
 
