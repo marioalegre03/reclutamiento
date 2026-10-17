@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Únete al equipo | Estación Kusmedios</title>
+<meta name="description" content="Estación Kusmedios busca reporteros, locutores, gente de moderación, producción y redes sociales. Manda tu solicitud desde reclutamiento.estacionkusmedios.com.">
+<meta name="theme-color" content="#070b1d">
+<meta property="og:title" content="Únete al equipo | Estación Kusmedios">
+<meta property="og:description" content="Buscamos reporteros, locutores, moderación, producción y redes sociales. Manda tu solicitud aquí.">
+<link rel="icon" type="image/png" href="img/cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#070b1d;
+  --navy-1:#0c1330;
+  --navy-2:#121b42;
+  --blue:#2f6bff;
+  --sky:#4fc3ff;
+  --orange:#ff7a00;
+  --amber:#ffb020;
+  --text:#f4f6ff;
+  --muted:#9aa7c7;
+  --line:rgba(255,255,255,.09);
+  --card:rgba(255,255,255,.045);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden}
+h1,h2,h3,.brand{font-family:'Sora',sans-serif}
+::selection{background:var(--orange);color:#14100a}
+.bg{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(900px 500px at 85% -10%, rgba(47,107,255,.22), transparent 60%),
+  radial-gradient(700px 500px at -10% 30%, rgba(255,122,0,.14), transparent 55%),
+  radial-gradient(800px 600px at 50% 110%, rgba(79,195,255,.10), transparent 60%),
+  var(--navy)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding:34px 0 6px;text-align:center}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.2px}
+.brand .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--amber));box-shadow:0 0 14px rgba(255,122,0,.7)}
+.hero{padding:34px 0 10px;text-align:center}
+.hero h1{font-size:clamp(30px,5.6vw,46px);font-weight:800;line-height:1.12}
+.hero h1 span{background:linear-gradient(90deg,var(--orange),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:16px;line-height:1.6;max-width:560px;margin:16px auto 0}
+.roles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px 0 4px}
+.chip{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:13.5px;color:var(--text)}
+.chip b{color:var(--sky);font-weight:600}
+.card{margin:26px 0 14px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:22px;padding:26px 24px;backdrop-filter:blur(6px)}
+.card h2{font-size:20px;margin-bottom:6px}
+.card .sub{color:var(--muted);font-size:13.5px;margin-bottom:20px}
+.field{margin-bottom:16px}
+label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;color:var(--text)}
+label .opt{color:var(--muted);font-weight:400}
+input,select,textarea{width:100%;padding:13px 14px;border-radius:13px;border:1px solid rgba(255,255,255,.14);background:rgba(7,11,29,.55);color:var(--text);font-family:inherit;font-size:15px;outline:none;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:96px;resize:vertical}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa7c7' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.privacy{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);line-height:1.5;margin:4px 0 18px}
+.privacy input{width:18px;height:18px;margin-top:2px;flex:0 0 auto;accent-color:var(--orange)}
+button{width:100%;padding:15px;border:none;border-radius:14px;background:linear-gradient(90deg,var(--orange),var(--amber));color:#14100a;font-family:'Sora',sans-serif;font-weight:800;font-size:16px;cursor:pointer;transition:transform .12s, box-shadow .12s}
+button:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,122,0,.35)}
+button:disabled{opacity:.6;cursor:wait;transform:none;box-shadow:none}
+.hp{position:absolute;left:-9999px;top:-9999px;height:1px;width:1px;overflow:hidden}
+.note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5}
+.ok,.err{display:none;margin-top:16px;padding:14px 16px;border-radius:13px;font-size:14px;line-height:1.5}
+.ok{background:rgba(46,204,113,.12);border:1px solid rgba(46,204,113,.4);color:#b8f4d2}
+.err{background:rgba(255,90,90,.12);border:1px solid rgba(255,90,90,.4);color:#ffc9c9}
+footer{padding:30px 0 44px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7}
+footer a{color:var(--sky);text-decoration:none}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+  <header>
+    <span class="brand"><span class="dot"></span> Estación Kusmedios</span>
+  </header>
+
+  <section class="hero">
+    <h1>Únete al <span>equipo</span></h1>
+    <p>Somos un grupo de radio y medios digitales de Irapuato, Guanajuato. Buscamos gente con ganas de hacer radio y contar historias. Llena el formulario y te contactamos.</p>
+    <div class="roles">
+      <span class="chip">🎙️ <b>Locutores</b></span>
+      <span class="chip">📰 <b>Reporteros</b></span>
+      <span class="chip">🛡️ <b>Moderación</b></span>
+      <span class="chip">🎚️ <b>Producción</b></span>
+      <span class="chip">📱 <b>Redes sociales</b></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Manda tu solicitud</h2>
+    <p class="sub">Los campos con * son obligatorios. Tus datos se usan solo para contactarte sobre tu solicitud.</p>
+    <form id="f" novalidate>
+      <div class="field">
+        <label for="nombre">Nombre completo *</label>
+        <input id="nombre" name="nombre" type="text" maxlength="80" autocomplete="name" required>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="email">Correo electrónico *</label>
+          <input id="email" name="email" type="email" maxlength="120" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="telefono">WhatsApp / teléfono <span class="opt">(opcional)</span></label>
+          <input id="telefono" name="telefono" type="tel" maxlength="20" autocomplete="tel">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="puesto">¿En qué te gustaría participar? *</label>
+          <select id="puesto" name="puesto" required>
+            <option value="">Elige una opción…</option>
+            <option>Locución</option>
+            <option>Reportería / noticias</option>
+            <option>Moderación</option>
+            <option>Producción</option>
+            <option>Redes sociales</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ciudad">Ciudad <span class="opt">(opcional)</span></label>
+          <input id="ciudad" name="ciudad" type="text" maxlength="60" autocomplete="address-level2">
+        </div>
+      </div>
+      <div class="field">
+        <label for="experiencia">Experiencia <span class="opt">(opcional)</span></label>
+        <textarea id="experiencia" name="experiencia" maxlength="600" placeholder="Cuéntanos si has hecho radio, medios, redes…"></textarea>
+      </div>
+      <div class="field">
+        <label for="mensaje">¿Por qué quieres unirte? <span class="opt">(opcional)</span></label>
+        <textarea id="mensaje" name="mensaje" maxlength="600"></textarea>
+      </div>
+      <label class="privacy">
+        <input id="aviso" type="checkbox" required>
+        <span>Acepto que Estación Kusmedios use estos datos únicamente para contactarme sobre mi solicitud. No se comparten con terceros.</span>
+      </label>
+      <div class="hp" aria-hidden="true">
+        <label>Empresa <input id="empresa" name="empresa" type="text" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <button id="btn" type="submit">Enviar solicitud</button>
+      <div class="ok" id="ok">¡Listo! Recibimos tu solicitud. Te contactaremos pronto al correo que nos diste. 📻</div>
+      <div class="err" id="err"></div>
+      <p class="note">Al enviar, tu solicitud llega directo al equipo de Estación Kusmedios. Sin registro ni contraseñas.</p>
+    </form>
+  </section>
+
+  <footer>
+    <p>Estación Kusmedios · Irapuato, Guanajuato, México<br>
+    <a href="https://runaradio.estacionkusmedios.com">Runaradio</a> · <a href="https://www.estacionkusmedios.org">estacionkusmedios.org</a></p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var ENDPOINT = 'https://saqyplbhhojyzusarkzq.supabase.co/functions/v1/submit-application';
+  var f = document.getElementById('f');
+  var btn = document.getElementById('btn');
+  var ok = document.getElementById('ok');
+  var err = document.getElementById('err');
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    ok.style.display = 'none'; err.style.display = 'none';
+
+    if (document.getElementById('empresa').value) { return; } // honeypot
+
+    var data = {
+      nombre: f.nombre.value.trim(),
+      email: f.email.value.trim(),
+      telefono: f.telefono.value.trim(),
+      puesto: f.puesto.value,
+      ciudad: f.ciudad.value.trim(),
+      experiencia: f.experiencia.value.trim(),
+      mensaje: f.mensaje.value.trim()
+    };
+
+    if (!data.nombre || !data.email || !data.puesto) { fail('Completa nombre, correo y el área en la que quieres participar.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { fail('Revisa tu correo electrónico, parece incompleto.'); return; }
+    if (!document.getElementById('aviso').checked) { fail('Necesitamos tu permiso para usar tus datos y contactarte.'); return; }
+
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then(function(r){
+      if (r.ok) {
+        f.reset();
+        ok.style.display = 'block';
+        ok.scrollIntoView({behavior:'smooth', block:'center'});
+      } else {
+        return r.json().catch(function(){ return {}; }).then(function(j){
+          fail(j.error || 'No se pudo enviar. Inténtalo de nuevo en unos minutos.');
+        });
+      }
+    }).catch(function(){
+      fail('Sin conexión con el servidor. Revisa tu internet e inténtalo otra vez.');
+    }).then(function(){
+      btn.disabled = false; btn.textContent = 'Enviar solicitud';
+    });
+
+    function fail(msg){ err.textContent = msg; err.style.display = 'block'; }
+  });
+})();
+</script>
+</body>
+</html>
