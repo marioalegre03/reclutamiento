@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ab7CsVV2sL3i0NH9MnuDgfI0C7ulpKW1Viz28LcjY6I='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; connect-src https://saqyplbhhojyzusarkzq.supabase.co; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ZGmJatHZTDHQIhCWw56F5JL75T4Ba/bh8Hm2EckigGY='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; connect-src https://saqyplbhhojyzusarkzq.supabase.co; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Únete al equipo | Estación Kusmedios</title>
@@ -73,6 +73,14 @@ button:disabled{opacity:.6;cursor:wait;transform:none;box-shadow:none}
 footer{padding:30px 0 44px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7}
 footer a{color:var(--sky);text-decoration:none}
 footer a:hover{text-decoration:underline}
+
+.countdown{margin-top:22px;text-align:center}
+.countdown-title{font-size:13px;color:var(--muted);margin-bottom:12px}
+.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:420px;margin:0 auto}
+.countdown-unit{padding:14px 6px;border:1px solid var(--line);border-radius:14px;background:rgba(7,11,29,.5)}
+.countdown-unit strong{display:block;color:var(--amber);font-family:'Sora',sans-serif;font-size:clamp(24px,6vw,34px);font-variant-numeric:tabular-nums}
+.countdown-unit span{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.countdown-date{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -98,6 +106,18 @@ footer a:hover{text-decoration:underline}
     <h2>Convocatoria cerrada</h2>
     <p class="sub">Gracias a todas las personas que enviaron su solicitud.</p>
     <p class="note" style="display:block">Volvemos a abrir el 20 de noviembre a la 1 pm.</p>
+
+    <div class="countdown" id="countdown">
+      <p class="countdown-title">Falta para la apertura</p>
+      <div class="countdown-grid" role="timer" aria-label="Tiempo restante para la apertura">
+        <div class="countdown-unit"><strong id="cd-days">--</strong><span>DÍAS</span></div>
+        <div class="countdown-unit"><strong id="cd-hours">--</strong><span>HORAS</span></div>
+        <div class="countdown-unit"><strong id="cd-minutes">--</strong><span>MINUTOS</span></div>
+        <div class="countdown-unit"><strong id="cd-seconds">--</strong><span>SEGUNDOS</span></div>
+      </div>
+      <p class="countdown-date">20 de noviembre de 2026 · 1:00 pm<br>Hora de la Ciudad de México</p>
+      <noscript><p class="countdown-date">Activa JavaScript para ver la cuenta regresiva.</p></noscript>
+    </div>
   </section>
 
   <footer>
@@ -109,63 +129,20 @@ footer a:hover{text-decoration:underline}
 <script>
 (function(){
   'use strict';
-  if(location.protocol!=='https:'){location.replace('https://reclutamiento.estacionkusmedios.com');return;}
-  var applicationId=crypto.randomUUID();
-  var ENDPOINT = 'https://saqyplbhhojyzusarkzq.supabase.co/functions/v1/submit-application';
-  var f = document.getElementById('f');
-  var btn = document.getElementById('btn');
-  var ok = document.getElementById('ok');
-  var err = document.getElementById('err');
-
-  f.addEventListener('submit', function(e){
-    e.preventDefault();
-    ok.style.display = 'none'; err.style.display = 'none';
-
-    if (document.getElementById('empresa').value) { return; } // honeypot
-
-    var data = {
-      id:applicationId,
-      consent:document.getElementById('aviso').checked,
-      empresa:document.getElementById('empresa').value,
-      nombre: f.nombre.value.trim(),
-      email: f.email.value.trim(),
-      telefono: f.telefono.value.trim(),
-      puesto: f.puesto.value,
-      emisora: f.emisora.value,
-      ciudad: f.ciudad.value.trim(),
-      experiencia: f.experiencia.value.trim(),
-      mensaje: f.mensaje.value.trim()
-    };
-
-    if (!data.nombre || !data.email || !data.emisora || !data.puesto) { fail('Completa nombre, correo, emisora y el área en la que quieres participar.'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { fail('Revisa tu correo electrónico, parece incompleto.'); return; }
-    if (!document.getElementById('aviso').checked) { fail('Necesitamos tu permiso para usar tus datos y contactarte.'); return; }
-
-    btn.disabled = true; btn.textContent = 'Enviando…';
-    fetch(ENDPOINT, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
-    }).then(function(r){
-      if (r.ok) {
-        f.reset();
-        applicationId=crypto.randomUUID();
-        ok.style.display = 'block';
-        ok.scrollIntoView({behavior:'smooth', block:'center'});
-      } else {
-        return r.json().catch(function(){ return {}; }).then(function(j){
-          fail(j.error || 'No se pudo enviar. Inténtalo de nuevo en unos minutos.');
-        });
-      }
-    }).catch(function(){
-      fail('Sin conexión con el servidor. Revisa tu internet e inténtalo otra vez.');
-    }).then(function(){
-      btn.disabled = false; btn.textContent = 'Enviar solicitud';
+  var target = Date.parse('2026-11-20T13:00:00-06:00');
+  function update(){
+    var total = Math.max(0, Math.ceil((target-Date.now())/1000));
+    var values = [Math.floor(total/86400), Math.floor(total%86400/3600), Math.floor(total%3600/60), total%60];
+    ['days','hours','minutes','seconds'].forEach(function(key,i){
+      document.getElementById('cd-'+key).textContent=String(values[i]).padStart(2,'0');
     });
-
-    function fail(msg){ err.textContent = msg; err.style.display = 'block'; }
-  });
+    if(total===0){
+      document.querySelector('.countdown-title').textContent='Estamos preparando la apertura. Actualiza esta página en unos momentos.';
+    }
+  }
+  update();
+  setInterval(update,1000);
 })();
 </script>
 </body>
-</html>
+      </html>
